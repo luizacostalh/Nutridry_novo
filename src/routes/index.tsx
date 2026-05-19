@@ -47,12 +47,14 @@ export const Route = createFileRoute("/")({
 const WHATSAPP_URL =
   "https://wa.me/5500000000000?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20um%20pedido%20de%20frutas%20desidratadas.";
 
-const fadeUp = {
+import type { Variants } from "framer-motion";
+
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
 };
 
-const stagger = {
+const stagger: Variants = {
   hidden: {},
   show: { transition: { staggerChildren: 0.08 } },
 };
@@ -295,7 +297,7 @@ function About() {
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           className="relative"
         >
           <div className="overflow-hidden rounded-3xl shadow-premium">
