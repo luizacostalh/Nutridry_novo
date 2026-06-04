@@ -127,7 +127,7 @@ function Nav() {
         <div className="glass-dark flex items-center justify-between rounded-full px-6 py-3">
           <a href="#top" className="flex items-center gap-2 text-[oklch(0.97_0.01_80)]">
             <Citrus className="h-5 w-5 text-gold" strokeWidth={1.5} />
-            <span className="font-display text-lg tracking-wide">Pomar Nobre</span>
+            <span className="font-display text-lg tracking-wide">Nutridry</span>
           </a>
           <nav className="hidden items-center gap-8 text-sm text-[oklch(0.85_0.012_80)] md:flex">
             <a href="#produtos" className="transition hover:text-gold">Produtos</a>
@@ -399,7 +399,7 @@ const GALLERY = [
 
 function Gallery() {
   return (
-    <Section id="galeria" eyebrow="Galeria Lifestyle" title="Onde a fruta vira ritual.">
+    <Section id="galeria" eyebrow="Galeria Lifestyle" title="O detalhe que transforma cada experiência">
       <motion.div
         initial="hidden"
         whileInView="show"
@@ -734,7 +734,7 @@ function Footer() {
           <div>
             <div className="flex items-center gap-2 text-[oklch(0.97_0.01_80)]">
               <Citrus className="h-5 w-5 text-gold" strokeWidth={1.5} />
-              <span className="font-display text-xl">Pomar Nobre</span>
+              <span className="font-display text-xl"> Nutridry</span>
             </div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed">
               Frutas desidratadas artesanais. Pequenos lotes, sabor real, sofisticação natural.
@@ -759,15 +759,15 @@ function Footer() {
               </li>
               <li>
                 <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-gold">
-                  @pomarnobre
+                  @Nutridry
                 </a>
               </li>
-              <li>contato@pomarnobre.com</li>
+              <li>contato@nutridry.com</li>
             </ul>
           </div>
         </div>
         <div className="mt-12 border-t border-white/10 pt-6 text-xs text-[oklch(0.6_0.012_80)]">
-          © {new Date().getFullYear()} Pomar Nobre. Todos os direitos reservados.
+          © {new Date().getFullYear()} Nutridry. Todos os direitos reservados.
         </div>
       </div>
     </footer>
