@@ -21,6 +21,7 @@ import gallery2 from "@/assets/gallery-2.jpg";
 import gallery3 from "@/assets/gallery-3.jpg";
 import gallery4 from "@/assets/gallery-4.jpg";
 import gallery5 from "@/assets/gallery-5.jpg";
+import gallery6 from "@/assets/gallery-6.jpg";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -293,7 +294,7 @@ function Uses() {
         >
           <div className="overflow-hidden rounded-3xl shadow-premium">
             <img
-              src={gallery1}
+              src={gallery6}
               alt="Frutas desidratadas artesanais"
               className="aspect-[4/5] w-full object-cover transition duration-700 hover:scale-105"
             />
