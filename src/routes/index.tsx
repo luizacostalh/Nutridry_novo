@@ -175,10 +175,10 @@ function Hero() {
             variants={stagger}
             className="max-w-3xl text-[oklch(0.97_0.01_80)]"
           >
-            <motion.div variants={fadeUp} className="mb-6 inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 backdrop-blur">
+            <motion.div variants={fadeUp} className="mt-6 mb-6 inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 backdrop-blur">
               <span className="h-1.5 w-1.5 rounded-full bg-gold" />
               <span className="text-xs uppercase tracking-[0.25em] text-[oklch(0.9_0.012_80)]">
-                Artesanal · Pequenos Lotes
+                Artesanal · 100% Natural
               </span>
             </motion.div>
 
@@ -195,8 +195,7 @@ function Hero() {
               variants={fadeUp}
               className="mt-8 max-w-xl text-lg leading-relaxed text-[oklch(0.88_0.012_80)] md:text-xl"
             >
-              Produzidas artesanalmente, nossas frutas unem sabor, sofisticação e
-              energia natural para o seu dia a dia.
+              Produção artesanal que preserva o melhor da fruta: sabor, aroma e autenticidade.
             </motion.p>
 
             <motion.div variants={fadeUp} className="mt-10 flex flex-wrap items-center gap-4">
@@ -228,7 +227,7 @@ function Hero() {
         className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-[oklch(0.85_0.012_80)]"
       >
         <div className="flex flex-col items-center gap-2">
-          <span className="text-[10px] uppercase tracking-[0.3em]">Role para explorar</span>
+          <span className="text-[10px] uppercase tracking-[0.3em]">Descubra nossa coleção</span>
           <motion.div
             animate={{ y: [0, 6, 0] }}
             transition={{ duration: 1.6, repeat: Infinity }}
@@ -240,51 +239,67 @@ function Hero() {
   );
 }
 
-const USES = [
-  {
-    icon: Wine,
-    title: "Para Drinks",
-    description:
-      "Perfeitas para gin tônica, drinks autorais e decoração premium em coquetelaria.",
-  },
-  {
-    icon: Sparkles,
-    title: "Para Energia e Saúde",
-    description: "Snack natural ideal para pré e pós treino, leveza com sabor real.",
-  },
-  {
-    icon: Award,
-    title: "Para Gastronomia",
-    description: "Sobremesas, cafeterias e tábuas gourmet com presença visual marcante.",
-  },
-];
-
 function Uses() {
   return (
-    <Section id="usos" eyebrow="Usos Principais" title="Versatilidade premium.">
-      <motion.div
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: "-80px" }}
-        variants={stagger}
-        className="grid gap-6 md:grid-cols-3"
-      >
-        {USES.map(({ icon: Icon, title, description }) => (
-          <motion.article
-            key={title}
+    <Section
+      id="usos"
+      title="Muito além de um ingrediente."
+    >
+      <div className="grid items-center gap-16 lg:grid-cols-2">
+        {/* Texto */}
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          variants={stagger}
+        >
+          <motion.p
             variants={fadeUp}
-            whileHover={{ y: -6 }}
-            className="group relative overflow-hidden rounded-2xl border border-border bg-card p-10 shadow-soft transition"
+            className="text-xl leading-9 font-light text-muted-foreground lg:text-[1.6rem]"
           >
-            <div className="mb-8 inline-flex h-14 w-14 items-center justify-center rounded-full bg-gradient-warm text-gold">
-              <Icon className="h-6 w-6" strokeWidth={1.5} />
-            </div>
-            <h3 className="font-display text-2xl">{title}</h3>
-            <p className="mt-3 text-muted-foreground">{description}</p>
-            <div className="mt-8 h-px bg-gradient-to-r from-gold/40 via-secondary/40 to-transparent" />
-          </motion.article>
-        ))}
-      </motion.div>
+            Selecionamos frutas de alta qualidade e aplicamos um processo artesanal de desidratação que preserva sabor, aroma e beleza natural. Um produto pensado para quem valoriza experiências autênticas, seja em drinks, gastronomia ou como snack saudável.
+          </motion.p>
+
+          <motion.div
+            variants={fadeUp}
+            className="mt-10 space-y-5"
+          >
+            {[
+              "Produção artesanal",
+              "Frutas cuidadosamente selecionadas",
+              "Sem conservantes artificiais",
+              "Perfeitas para drinks, receitas e snacks",
+            ].map((item) => (
+              <div
+                key={item}
+                className="flex items-center gap-4"
+              >
+                <span className="h-2.5 w-2.5 rounded-full bg-gold" />
+                <span className="text-lg font-medium text-foreground">
+                  {item}
+                </span>
+              </div>
+            ))}
+          </motion.div>
+        </motion.div>
+
+        {/* Imagem */}
+        <motion.div
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="relative max-w-sm mx-auto lg:max-w-md"
+        >
+          <div className="overflow-hidden rounded-3xl shadow-premium">
+            <img
+              src={gallery1}
+              alt="Frutas desidratadas artesanais"
+              className="aspect-[4/5] w-full object-cover transition duration-700 hover:scale-105"
+            />
+          </div>
+        </motion.div>
+      </div>
     </Section>
   );
 }
