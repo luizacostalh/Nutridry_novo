@@ -444,52 +444,92 @@ function Gallery() {
   );
 }
 
-const PRODUCTS = [
-  { name: "Laranja Desidratada", description: "Ideal para gin tônica, drinks cítricos e snacks naturais.", tag: "Best-seller" },
-  { name: "Limão Desidratado", description: "Toque refrescante e sofisticado para bebidas.", tag: "Cítrico" },
-  { name: "Banana Chips", description: "Fonte natural de energia para o dia a dia.", tag: "Fitness" },
-  { name: "Maçã Desidratada", description: "Leve, crocante e naturalmente doce.", tag: "Suave" },
-  { name: "Kiwi Desidratado", description: "Visual exótico e sabor marcante.", tag: "Exótico" },
+const FRUITS = [
+  "Laranja",
+  "Limão Tahiti",
+  "Limão Siciliano",
+  "Kiwi",
+  "Maçã",
+  "Banana",
+  "Abacaxi",
+  "Manga",
+  "Pera",
+  "Morango",
+  "Coco",
+  "E muito mais...",
 ];
 
 function Products() {
   return (
-    <Section id="produtos" eyebrow="Produtos" title="A coleção." intro="Cinco frutas, infinitas combinações. Cortadas e desidratadas com precisão.">
+    <Section
+      id="produtos"
+            title="Frutas para qualquer ocasião."
+      intro="Uma seleção de frutas desidratadas para drinks, gastronomia, cafeterias e snacks naturais. E, se você procura algo especial, produzimos sob encomenda."
+    >
       <motion.div
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, margin: "-80px" }}
+        viewport={{ once: true }}
         variants={stagger}
-        className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+        className="mx-auto max-w-4xl"
       >
-        {PRODUCTS.map((p, i) => (
-          <motion.article
-            key={p.name}
-            variants={fadeUp}
-            whileHover={{ y: -8 }}
-            className="group relative overflow-hidden rounded-2xl border border-border bg-card p-8 shadow-soft transition"
+        {/* Lista de frutas */}
+        <div className="mt-12 rounded-[32px] bg-[oklch(0.12_0.018_150)] p-10 shadow-premium">
+        <motion.div
+  variants={fadeUp}
+  className="mt-12 flex flex-wrap justify-center gap-4"
+>
+  {FRUITS.map((fruit) => (
+    <div
+      key={fruit}
+      className="
+        rounded-full
+        border
+        border-border
+        bg-card/60
+        px-6
+        py-3
+        text-base
+        font-medium
+        text-foreground
+        backdrop-blur-sm
+        transition-all
+        duration-300
+        hover:-translate-y-1
+        hover:border-gold
+        hover:shadow-premium
+      "
+    >
+      {fruit}
+    </div>
+  ))}
+</motion.div>
+</div>
+
+        {/* Bloco inferior */}
+        <motion.div
+          variants={fadeUp}
+          className="mt-16 rounded-3xl border border-border bg-card p-8 text-center shadow-soft"
+        >
+          <h3 className="font-display text-3xl">
+            Não encontrou a fruta que procura?
+          </h3>
+
+          <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
+            Produzimos sabores personalizados conforme a necessidade do seu projeto.
+            Entre em contato e monte sua seleção ideal.
+          </p>
+
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-8 inline-flex items-center gap-2 rounded-full bg-gradient-gold px-7 py-4 text-sm font-semibold uppercase tracking-wider text-[oklch(0.16_0.02_150)] shadow-premium transition hover:scale-[1.03]"
           >
-            <div className="flex items-start justify-between">
-              <span className="font-display text-6xl text-muted-foreground/30">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <span className="rounded-full border border-gold/40 bg-gold/10 px-3 py-1 text-[10px] font-medium uppercase tracking-wider text-secondary">
-                {p.tag}
-              </span>
-            </div>
-            <h3 className="mt-8 font-display text-2xl">{p.name}</h3>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.description}</p>
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-primary transition group-hover:gap-2"
-            >
-              Pedir agora <ChevronRight className="h-4 w-4" />
-            </a>
-            <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent opacity-0 transition group-hover:opacity-100" />
-          </motion.article>
-        ))}
+            Solicitar orçamento
+            <ChevronRight className="h-4 w-4" />
+          </a>
+        </motion.div>
       </motion.div>
     </Section>
   );
@@ -814,13 +854,14 @@ function Index() {
     <main className="bg-background text-foreground">
       <Nav />
       <Hero />
+      <Products />
       <Uses />
       <About />
-      <Differentials />
+      {/*<Differentials />*/}
       <Gallery />
-      <Products />
-      <Kits />
-      <HowToConsume />
+      
+      {/*<Kits />*/}
+      {/*<HowToConsume />*/}
       <Process />
       <Social />
       <CTA />
