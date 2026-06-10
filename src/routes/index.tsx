@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import {
   Leaf,
   Sparkles,
@@ -12,6 +12,7 @@ import {
   MessageCircle,
   Instagram,
   ChevronRight,
+  ChevronDown,
   Quote,
   Star,
 } from "lucide-react";
@@ -46,7 +47,7 @@ export const Route = createFileRoute("/")({
 });
 
 const WHATSAPP_URL =
-  "https://wa.me/5500000000000?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20um%20pedido%20de%20frutas%20desidratadas.";
+  "https://wa.me/5567999224158?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20um%20pedido%20de%20frutas%20desidratadas.";
 
 import type { Variants } from "framer-motion";
 
@@ -460,10 +461,15 @@ const FRUITS = [
 ];
 
 function Products() {
+  const [showPrices, setShowPrices] = useState(false);
+  const [showTraditional, setShowTraditional] = useState(true);
+  const [showCitrics, setShowCitrics] = useState(false);
+
   return (
     <Section
       id="produtos"
-            title="Frutas para qualquer ocasião."
+      dark
+      title="Frutas para qualquer ocasião."
       intro="Uma seleção de frutas desidratadas para drinks, gastronomia, cafeterias e snacks naturais. E, se você procura algo especial, produzimos sob encomenda."
     >
       <motion.div
@@ -474,62 +480,233 @@ function Products() {
         className="mx-auto max-w-4xl"
       >
         {/* Lista de frutas */}
-        <div className="mt-12 rounded-[32px] bg-[oklch(0.12_0.018_150)] p-10 shadow-premium">
-        <motion.div
-  variants={fadeUp}
-  className="mt-12 flex flex-wrap justify-center gap-4"
->
-  {FRUITS.map((fruit) => (
-    <div
-      key={fruit}
-      className="
-        rounded-full
-        border
-        border-border
-        bg-card/60
-        px-6
-        py-3
-        text-base
-        font-medium
-        text-foreground
-        backdrop-blur-sm
-        transition-all
-        duration-300
-        hover:-translate-y-1
-        hover:border-gold
-        hover:shadow-premium
-      "
-    >
-      {fruit}
-    </div>
-  ))}
-</motion.div>
-</div>
-
-        {/* Bloco inferior */}
         <motion.div
           variants={fadeUp}
-          className="mt-16 rounded-3xl border border-border bg-card p-8 text-center shadow-soft"
+          className="mt-12 flex flex-wrap justify-center gap-4"
         >
-          <h3 className="font-display text-3xl">
-            Não encontrou a fruta que procura?
-          </h3>
+          {FRUITS.map((fruit) => (
+            <div
+              key={fruit}
+              className="
+                rounded-full
+                border
+                border-gold/20
+                bg-white/10
+                px-6
+                py-3
+                text-[oklch(0.95_0.012_80)]
+                font-medium
+                backdrop-blur-sm
+                transition-all
+                duration-300
+                hover:-translate-y-1
+                hover:border-gold
+                hover:bg-gold/10
+                hover:text-gold
+              "
+            >
+              <span className="mr-2 text-gold">◉</span>
+              {fruit}
+            </div>
+          ))}
+        </motion.div>
 
-          <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-            Produzimos sabores personalizados conforme a necessidade do seu projeto.
-            Entre em contato e monte sua seleção ideal.
-          </p>
-
+        {/* CTA */}
+        <motion.div
+          variants={fadeUp}
+          className="mt-12 text-center"
+        >
           <a
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-gradient-gold px-7 py-4 text-sm font-semibold uppercase tracking-wider text-[oklch(0.16_0.02_150)] shadow-premium transition hover:scale-[1.03]"
+            className="inline-flex items-center gap-2 rounded-full bg-gradient-gold px-8 py-4 text-sm font-semibold uppercase tracking-wider text-[oklch(0.16_0.02_150)] shadow-premium transition hover:scale-[1.03]"
           >
-            Solicitar orçamento
+            Fazer pedido
             <ChevronRight className="h-4 w-4" />
           </a>
+
+          <p className="mt-6 text-sm text-[oklch(0.78_0.015_80)]">
+            Não encontrou a fruta que procura? Produzimos também sob encomenda.
+          </p>
+
+          <button
+            onClick={() => setShowPrices(!showPrices)}
+            className="mt-8 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.2em] text-gold transition hover:text-white"
+          >
+            {showPrices ? "Ocultar preços" : "Consultar preços"}
+
+            <ChevronDown
+              className={`h-4 w-4 transition-transform ${
+                showPrices ? "rotate-180" : ""
+              }`}
+            />
+          </button>
         </motion.div>
+
+        {/* TABELA DE PREÇOS */}
+        {showPrices && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            className="mt-10 overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm"
+          >
+            {/* Frutas Tradicionais */}
+            <button
+              onClick={() => setShowTraditional(!showTraditional)}
+              className="flex w-full items-center justify-between border-b border-white/10 py-4 text-left"
+            >
+              <span className="font-display text-2xl text-white">
+                Frutas Tradicionais
+              </span>
+
+              <ChevronDown
+                className={`transition-transform ${
+                  showTraditional ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+
+            {showTraditional && (
+              <div className="mt-6 overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-white/10 text-gold">
+                      <th className="py-3 text-left">Fruta</th>
+                      <th>50g</th>
+                      <th>500g</th>
+                      <th>1kg</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr className="border-b border-white/5">
+                      <td className="py-4">Banana</td>
+                      <td>R$15</td>
+                      <td>R$150</td>
+                      <td>R$270</td>
+                    </tr>
+
+                    <tr className="border-b border-white/5">
+                      <td className="py-4">Maçã</td>
+                      <td>R$15</td>
+                      <td>R$150</td>
+                      <td>R$270</td>
+                    </tr>
+
+                    <tr className="border-b border-white/5">
+                      <td className="py-4">Mamão</td>
+                      <td>R$15</td>
+                      <td>R$150</td>
+                      <td>R$270</td>
+                    </tr>
+
+                    <tr className="border-b border-white/5">
+                      <td className="py-4">Manga</td>
+                      <td>R$15</td>
+                      <td>R$150</td>
+                      <td>R$270</td>
+                    </tr>
+
+                    <tr className="border-b border-white/5">
+                      <td className="py-4">Abacaxi</td>
+                      <td>R$15</td>
+                      <td>R$150</td>
+                      <td>R$299</td>
+                    </tr>
+
+                    <tr className="border-b border-white/5">
+                      <td className="py-4">Morango</td>
+                      <td>R$30</td>
+                      <td>R$285</td>
+                      <td>R$540</td>
+                    </tr>
+
+                    <tr className="border-b border-white/5">
+                      <td className="py-4">Pitaya</td>
+                      <td>R$30</td>
+                      <td>R$285</td>
+                      <td>R$540</td>
+                    </tr>
+
+                    <tr>
+                      <td className="py-4">Maçã Verde</td>
+                      <td>R$30</td>
+                      <td>R$285</td>
+                      <td>R$540</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            )}
+
+            {/* Linha Cítrica */}
+            <button
+              onClick={() => setShowCitrics(!showCitrics)}
+              className="mt-8 flex w-full items-center justify-between border-b border-white/10 py-4 text-left"
+            >
+              <span className="font-display text-2xl text-white">
+                Linha Cítrica
+              </span>
+
+              <ChevronDown
+                className={`transition-transform ${
+                  showCitrics ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+
+            {showCitrics && (
+              <div className="mt-6 overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-white/10 text-gold">
+                      <th className="py-3 text-left">Fruta</th>
+                      <th>500g</th>
+                      <th>1kg</th>
+                      <th>3kg</th>
+                      <th>5kg</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr className="border-b border-white/5">
+                      <td className="py-4">Laranja Bahia</td>
+                      <td>R$109</td>
+                      <td>R$199</td>
+                      <td>R$567</td>
+                      <td>R$925</td>
+                    </tr>
+
+                    <tr className="border-b border-white/5">
+                      <td className="py-4">Laranja Pera</td>
+                      <td>R$89</td>
+                      <td>R$159</td>
+                      <td>R$447</td>
+                      <td>R$725</td>
+                    </tr>
+
+                    <tr className="border-b border-white/5">
+                      <td className="py-4">Limão Siciliano</td>
+                      <td>R$109</td>
+                      <td>R$199</td>
+                      <td>R$567</td>
+                      <td>R$925</td>
+                    </tr>
+
+                    <tr>
+                      <td className="py-4">Limão Tahiti</td>
+                      <td>R$89</td>
+                      <td>R$159</td>
+                      <td>R$447</td>
+                      <td>R$725</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </motion.div>
+        )}
       </motion.div>
     </Section>
   );
@@ -784,7 +961,7 @@ function CTA() {
 
 function Footer() {
   return (
-    <footer className="bg-[oklch(0.12_0.018_150)] py-16 text-[oklch(0.78_0.015_80)]">
+    <footer className="bg-[oklch(0.16_0.018_150)] py-16 text-[oklch(0.78_0.015_80)]">
       <div className="container mx-auto max-w-7xl px-6">
         <div className="grid gap-12 md:grid-cols-3">
           <div>
