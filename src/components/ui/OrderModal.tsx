@@ -33,10 +33,14 @@ export default function OrderModal({
       if (!product) return null;
 
       return {
-        id: product.id,
-        name: product.name,
-        weight: "",
-      };
+  id: product.id,
+  name: product.name,
+  emoji: product.emoji,
+  weight:
+    product.options.length > 0
+      ? product.options[0].weight
+      : "",
+};
     })
     .filter(Boolean) as SelectedItem[];
 
@@ -97,18 +101,21 @@ export default function OrderModal({
 Gostaria de fazer um pedido.
 
 `;
+console.log(selectedItems);
 
   selectedItems.forEach((item) => {
-    const fruit =
-      item.name === "Outra fruta"
-        ? customFruit || "Outra fruta"
-        : item.name;
+  console.log("ITEM:", item);
 
-    message += `${item.emoji} ${fruit}
+  const fruit =
+    item.name === "Outra fruta"
+      ? customFruit || "Outra fruta"
+      : item.name;
+
+  message += `${item.emoji} ${fruit}
 Quantidade: ${item.weight}
 
 `;
-  });
+});
 
   if (notes.trim()) {
     message += `📝 Observações:

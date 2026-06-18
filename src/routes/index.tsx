@@ -493,13 +493,13 @@ function Products() {
   className={`
     rounded-full
     border
-    px-6
-    py-3
+    px-3
+    py-2
+    sm:px-5
+    sm:py-3
+    text-xs
+    sm:text-sm
     font-medium
-    backdrop-blur-sm
-    transition-all
-    duration-300
-    hover:-translate-y-1
 
     ${
       selectedProducts.includes(product.id)
@@ -524,9 +524,32 @@ function Products() {
         >
           <button
   onClick={() => setShowOrderModal(true)}
-  className="inline-flex items-center gap-2 rounded-full bg-gradient-gold px-8 py-4 text-sm font-semibold uppercase tracking-wider text-[oklch(0.16_0.02_150)] shadow-premium transition hover:scale-[1.03]"
+  disabled={selectedProducts.length === 0}
+  className={`
+    inline-flex
+    items-center
+    gap-2
+    rounded-full
+    px-8
+    py-4
+    text-sm
+    font-semibold
+    uppercase
+    tracking-wider
+    shadow-premium
+    transition
+
+    ${
+      selectedProducts.length === 0
+        ? "cursor-not-allowed bg-white/10 text-white/40"
+        : "bg-gradient-gold text-[oklch(0.16_0.02_150)] hover:scale-[1.03]"
+    }
+  `}
 >
-  Fazer pedido
+  {selectedProducts.length === 0
+    ? "Escolha uma fruta"
+    : `Fazer pedido (${selectedProducts.length})`}
+
   <ChevronRight className="h-4 w-4" />
 </button>
 
