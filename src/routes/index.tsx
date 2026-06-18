@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
+import OrderModal from "@/components/ui/OrderModal";
+import { PRODUCTS } from "@/data/products";
 import {
   Leaf,
   Sparkles,
@@ -445,25 +447,24 @@ function Gallery() {
   );
 }
 
-const FRUITS = [
-  "Laranja",
-  "Limão Tahiti",
-  "Limão Siciliano",
-  "Kiwi",
-  "Maçã",
-  "Banana",
-  "Abacaxi",
-  "Manga",
-  "Pera",
-  "Morango",
-  "Coco",
-  "E muito mais...",
-];
+
 
 function Products() {
   const [showPrices, setShowPrices] = useState(false);
   const [showTraditional, setShowTraditional] = useState(true);
   const [showCitrics, setShowCitrics] = useState(false);
+  const [showOrderModal, setShowOrderModal] = useState(false);
+  const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
+
+  function toggleProduct(id: string) {
+  setSelectedProducts((current) =>
+    current.includes(id)
+      ? current.filter((item) => item !== id)
+      : [...current, id]
+  );
+}
+
+  console.log("PRODUCTS:", PRODUCTS);
 
   return (
     <Section
@@ -484,31 +485,36 @@ function Products() {
           variants={fadeUp}
           className="mt-12 flex flex-wrap justify-center gap-4"
         >
-          {FRUITS.map((fruit) => (
-            <div
-              key={fruit}
-              className="
-                rounded-full
-                border
-                border-gold/20
-                bg-white/10
-                px-6
-                py-3
-                text-[oklch(0.95_0.012_80)]
-                font-medium
-                backdrop-blur-sm
-                transition-all
-                duration-300
-                hover:-translate-y-1
-                hover:border-gold
-                hover:bg-gold/10
-                hover:text-gold
-              "
-            >
-              <span className="mr-2 text-gold">◉</span>
-              {fruit}
-            </div>
-          ))}
+      
+          {PRODUCTS.map((product) => (
+  <button
+  key={product.id}
+  onClick={() => toggleProduct(product.id)}
+  className={`
+    rounded-full
+    border
+    px-6
+    py-3
+    font-medium
+    backdrop-blur-sm
+    transition-all
+    duration-300
+    hover:-translate-y-1
+
+    ${
+      selectedProducts.includes(product.id)
+        ? "border-gold bg-gradient-gold text-[oklch(0.16_0.02_150)] shadow-lg scale-105"
+        : "border-gold/20 bg-white/10 text-[oklch(0.95_0.012_80)] hover:border-gold hover:bg-gold/10 hover:text-gold"
+    }
+  `}
+>
+    <span className="mr-2">
+      {product.emoji}
+    </span>
+
+    {product.name}
+  </button>
+))}
         </motion.div>
 
         {/* CTA */}
@@ -516,15 +522,13 @@ function Products() {
           variants={fadeUp}
           className="mt-12 text-center"
         >
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-gradient-gold px-8 py-4 text-sm font-semibold uppercase tracking-wider text-[oklch(0.16_0.02_150)] shadow-premium transition hover:scale-[1.03]"
-          >
-            Fazer pedido
-            <ChevronRight className="h-4 w-4" />
-          </a>
+          <button
+  onClick={() => setShowOrderModal(true)}
+  className="inline-flex items-center gap-2 rounded-full bg-gradient-gold px-8 py-4 text-sm font-semibold uppercase tracking-wider text-[oklch(0.16_0.02_150)] shadow-premium transition hover:scale-[1.03]"
+>
+  Fazer pedido
+  <ChevronRight className="h-4 w-4" />
+</button>
 
           <p className="mt-6 text-sm text-[oklch(0.78_0.015_80)]">
             Não encontrou a fruta que procura? Produzimos também sob encomenda.
@@ -708,6 +712,11 @@ function Products() {
           </motion.div>
         )}
       </motion.div>
+      <OrderModal
+  open={showOrderModal}
+  onClose={() => setShowOrderModal(false)}
+  selectedProducts={selectedProducts}
+/>
     </Section>
   );
 }
