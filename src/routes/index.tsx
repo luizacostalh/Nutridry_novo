@@ -737,7 +737,10 @@ function Products() {
       </motion.div>
       <OrderModal
   open={showOrderModal}
-  onClose={() => setShowOrderModal(false)}
+  onClose={() => {
+    setShowOrderModal(false);
+    setSelectedProducts([]);
+  }}
   selectedProducts={selectedProducts}
 />
     </Section>
