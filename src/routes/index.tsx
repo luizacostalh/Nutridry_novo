@@ -210,35 +210,13 @@ function Hero() {
                 Conhecer Produtos
                 <ChevronRight className="h-4 w-4 transition group-hover:translate-x-1" />
               </a>
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/5 px-7 py-4 text-sm font-semibold uppercase tracking-wider text-white backdrop-blur transition hover:bg-white/15"
-              >
-                <MessageCircle className="h-4 w-4" />
-                Pedir no WhatsApp
-              </a>
+              
             </motion.div>
           </motion.div>
         </div>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 1 }}
-        className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-[oklch(0.85_0.012_80)]"
-      >
-        <div className="flex flex-col items-center gap-2">
-          <span className="text-[10px] uppercase tracking-[0.3em]">Descubra nossa coleção</span>
-          <motion.div
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 1.6, repeat: Infinity }}
-            className="h-8 w-px bg-gold/60"
-          />
-        </div>
-      </motion.div>
+      
     </div>
   );
 }

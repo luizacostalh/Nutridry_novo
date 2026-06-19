@@ -96,36 +96,43 @@ export default function OrderModal({
     return;
   }
 
-  let message = `Olá!
+  let message = `Olá! 
 
-Gostaria de fazer um pedido.
+Tenho interesse em fazer um pedido.
+
+Itens:
 
 `;
-console.log(selectedItems);
 
-  selectedItems.forEach((item) => {
-  console.log("ITEM:", item);
-
+selectedItems.forEach((item) => {
   const fruit =
     item.name === "Outra fruta"
       ? customFruit || "Outra fruta"
       : item.name;
 
-  message += `${item.emoji} ${fruit}
-Quantidade: ${item.weight}
-
+  message += `• ${fruit} | ${item.weight}
 `;
 });
 
-  if (notes.trim()) {
-    message += `📝 Observações:
+if (notes.trim()) {
+  message += `
 
+📝 Observações:
 ${notes}
-
 `;
-  }
+}
 
-  message += "Aguardo retorno. Obrigado!";
+message += `
+
+Poderia me informar:
+
+• Valor total do pedido
+• Prazo de produção
+• Forma de entrega
+
+Obrigado!`;
+
+console.log(message);
 
   window.open(
     `https://wa.me/5567999224158?text=${encodeURIComponent(message)}`,
