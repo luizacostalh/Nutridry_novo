@@ -434,6 +434,8 @@ function Products() {
   const [showOrderModal, setShowOrderModal] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
 
+  const [openFruit, setOpenFruit] = useState<string | null>(null);
+
   function toggleProduct(id: string) {
   setSelectedProducts((current) =>
     current.includes(id)
@@ -444,6 +446,135 @@ function Products() {
 
   console.log("PRODUCTS:", PRODUCTS);
 
+  const traditionalProducts = [
+  {
+    id: "banana",
+    emoji: "🍌",
+    name: "Banana",
+    prices: [
+      ["50g", "R$15"],
+      ["500g", "R$150"],
+      ["1kg", "R$270"],
+    ],
+  },
+  {
+    id: "maca",
+    emoji: "🍎",
+    name: "Maçã",
+    prices: [
+      ["50g", "R$15"],
+      ["500g", "R$150"],
+      ["1kg", "R$270"],
+    ],
+  },
+  {
+    id: "mamao",
+    emoji: "🍈",
+    name: "Mamão",
+    prices: [
+      ["50g", "R$15"],
+      ["500g", "R$150"],
+      ["1kg", "R$270"],
+    ],
+  },
+  {
+    id: "manga",
+    emoji: "🥭",
+    name: "Manga",
+    prices: [
+      ["50g", "R$15"],
+      ["500g", "R$150"],
+      ["1kg", "R$270"],
+    ],
+  },
+  {
+    id: "abacaxi",
+    emoji: "🍍",
+    name: "Abacaxi",
+    prices: [
+      ["50g", "R$15"],
+      ["500g", "R$150"],
+      ["1kg", "R$299"],
+    ],
+  },
+  {
+    id: "morango",
+    emoji: "🍓",
+    name: "Morango",
+    prices: [
+      ["50g", "R$30"],
+      ["500g", "R$285"],
+      ["1kg", "R$540"],
+    ],
+  },
+  {
+    id: "pitaya",
+    emoji: "🐉",
+    name: "Pitaya",
+    prices: [
+      ["50g", "R$30"],
+      ["500g", "R$285"],
+      ["1kg", "R$540"],
+    ],
+  },
+  {
+    id: "maca-verde",
+    emoji: "🍏",
+    name: "Maçã Verde",
+    prices: [
+      ["50g", "R$30"],
+      ["500g", "R$285"],
+      ["1kg", "R$540"],
+    ],
+  },
+];
+
+  const citricProducts = [
+  {
+    id: "laranja-bahia",
+    emoji: "🍊",
+    name: "Laranja Bahia",
+    prices: [
+      ["500g", "R$109"],
+      ["1kg", "R$199"],
+      ["3kg", "R$567"],
+      ["5kg", "R$925"],
+    ],
+  },
+  {
+    id: "laranja-pera",
+    emoji: "🍊",
+    name: "Laranja Pera",
+    prices: [
+      ["500g", "R$89"],
+      ["1kg", "R$159"],
+      ["3kg", "R$447"],
+      ["5kg", "R$725"],
+    ],
+  },
+  {
+    id: "limao-siciliano",
+    emoji: "🍋",
+    name: "Limão Siciliano",
+    prices: [
+      ["500g", "R$109"],
+      ["1kg", "R$199"],
+      ["3kg", "R$567"],
+      ["5kg", "R$925"],
+    ],
+  },
+  {
+    id: "limao-tahiti",
+    emoji: "🍋",
+    name: "Limão Tahiti",
+    prices: [
+      ["500g", "R$89"],
+      ["1kg", "R$159"],
+      ["3kg", "R$447"],
+      ["5kg", "R$725"],
+    ],
+  },
+];
   return (
     <Section
       id="produtos"
@@ -573,7 +704,7 @@ function Products() {
             </button>
 
             {showTraditional && (
-              <div className="mt-6 overflow-x-auto">
+              <div className="mt-6 hidden overflow-x-auto md:block">
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b border-white/10 text-gold">
@@ -585,62 +716,21 @@ function Products() {
                   </thead>
 
                   <tbody>
-                    <tr className="border-b border-white/5">
-                      <td className="py-4">Banana</td>
-                      <td>R$15</td>
-                      <td>R$150</td>
-                      <td>R$270</td>
-                    </tr>
+  {traditionalProducts.map((fruit) => (
+    <tr
+      key={fruit.id}
+      className="border-b border-white/5 last:border-0"
+    >
+      <td className="py-4">
+        {fruit.emoji} {fruit.name}
+      </td>
 
-                    <tr className="border-b border-white/5">
-                      <td className="py-4">Maçã</td>
-                      <td>R$15</td>
-                      <td>R$150</td>
-                      <td>R$270</td>
-                    </tr>
-
-                    <tr className="border-b border-white/5">
-                      <td className="py-4">Mamão</td>
-                      <td>R$15</td>
-                      <td>R$150</td>
-                      <td>R$270</td>
-                    </tr>
-
-                    <tr className="border-b border-white/5">
-                      <td className="py-4">Manga</td>
-                      <td>R$15</td>
-                      <td>R$150</td>
-                      <td>R$270</td>
-                    </tr>
-
-                    <tr className="border-b border-white/5">
-                      <td className="py-4">Abacaxi</td>
-                      <td>R$15</td>
-                      <td>R$150</td>
-                      <td>R$299</td>
-                    </tr>
-
-                    <tr className="border-b border-white/5">
-                      <td className="py-4">Morango</td>
-                      <td>R$30</td>
-                      <td>R$285</td>
-                      <td>R$540</td>
-                    </tr>
-
-                    <tr className="border-b border-white/5">
-                      <td className="py-4">Pitaya</td>
-                      <td>R$30</td>
-                      <td>R$285</td>
-                      <td>R$540</td>
-                    </tr>
-
-                    <tr>
-                      <td className="py-4">Maçã Verde</td>
-                      <td>R$30</td>
-                      <td>R$285</td>
-                      <td>R$540</td>
-                    </tr>
-                  </tbody>
+      {fruit.prices.map(([_, price]) => (
+        <td key={price}>{price}</td>
+      ))}
+    </tr>
+  ))}
+</tbody>
                 </table>
               </div>
             )}
@@ -661,55 +751,92 @@ function Products() {
               />
             </button>
 
+            
+
             {showCitrics && (
-              <div className="mt-6 overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b border-white/10 text-gold">
-                      <th className="py-3 text-left">Fruta</th>
-                      <th>500g</th>
-                      <th>1kg</th>
-                      <th>3kg</th>
-                      <th>5kg</th>
-                    </tr>
-                  </thead>
+  <>
+    {/* Desktop */}
+    <div className="mt-6 hidden overflow-x-auto md:block">
+      <table className="w-full text-sm">
+        <thead>
+          <tr className="border-b border-white/10 text-gold">
+            <th className="py-3 text-left">Fruta</th>
+            <th>500g</th>
+            <th>1kg</th>
+            <th>3kg</th>
+            <th>5kg</th>
+          </tr>
+        </thead>
 
-                  <tbody>
-                    <tr className="border-b border-white/5">
-                      <td className="py-4">Laranja Bahia</td>
-                      <td>R$109</td>
-                      <td>R$199</td>
-                      <td>R$567</td>
-                      <td>R$925</td>
-                    </tr>
+        <tbody>
+          {citricProducts.map((fruit) => (
+            <tr
+              key={fruit.id}
+              className="border-b border-white/5 last:border-0"
+            >
+              <td className="py-4">
+                {fruit.emoji} {fruit.name}
+              </td>
 
-                    <tr className="border-b border-white/5">
-                      <td className="py-4">Laranja Pera</td>
-                      <td>R$89</td>
-                      <td>R$159</td>
-                      <td>R$447</td>
-                      <td>R$725</td>
-                    </tr>
+              {fruit.prices.map(([_, price]) => (
+                <td key={price}>{price}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
 
-                    <tr className="border-b border-white/5">
-                      <td className="py-4">Limão Siciliano</td>
-                      <td>R$109</td>
-                      <td>R$199</td>
-                      <td>R$567</td>
-                      <td>R$925</td>
-                    </tr>
+    {/* Mobile */}
+    <div className="mt-6 space-y-3 md:hidden">
+      {citricProducts.map((fruit) => (
+        <div
+          key={fruit.id}
+          className="overflow-hidden rounded-2xl border border-white/10 bg-white/5"
+        >
+          <button
+            onClick={() =>
+              setOpenFruit(openFruit === fruit.id ? null : fruit.id)
+            }
+            className="flex w-full items-center justify-between p-5"
+          >
+            <span className="font-display text-lg text-gold">
+              {fruit.emoji} {fruit.name}
+            </span>
 
-                    <tr>
-                      <td className="py-4">Limão Tahiti</td>
-                      <td>R$89</td>
-                      <td>R$159</td>
-                      <td>R$447</td>
-                      <td>R$725</td>
-                    </tr>
-                  </tbody>
-                </table>
+            <ChevronDown
+              className={`transition-transform duration-300 ${
+                openFruit === fruit.id ? "rotate-180" : ""
+              }`}
+            />
+          </button>
+
+          {openFruit === fruit.id && (
+            <div className="border-t border-white/10 px-5 py-4">
+              <div className="space-y-3 text-sm">
+                {fruit.prices.map(([weight, price]) => (
+                  <div
+                    key={weight}
+                    className="flex justify-between"
+                  >
+                    <span className="text-white/70">
+                      {weight}
+                    </span>
+
+                    <span className="font-semibold text-gold">
+                      {price}
+                    </span>
+                  </div>
+                ))}
               </div>
-            )}
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </>
+)}
+
           </motion.div>
         )}
       </motion.div>
