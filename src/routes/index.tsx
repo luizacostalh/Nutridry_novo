@@ -704,36 +704,89 @@ function Products() {
             </button>
 
             {showTraditional && (
-              <div className="mt-6 hidden overflow-x-auto md:block">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b border-white/10 text-gold">
-                      <th className="py-3 text-left">Fruta</th>
-                      <th>50g</th>
-                      <th>500g</th>
-                      <th>1kg</th>
-                    </tr>
-                  </thead>
+  <>
+    {/* Desktop */}
+    <div className="mt-6 hidden overflow-x-auto md:block">
+      <table className="w-full text-sm">
+        <thead>
+          <tr className="border-b border-white/10 text-gold">
+            <th className="py-3 text-left">Fruta</th>
+            <th>50g</th>
+            <th>500g</th>
+            <th>1kg</th>
+          </tr>
+        </thead>
 
-                  <tbody>
-  {traditionalProducts.map((fruit) => (
-    <tr
-      key={fruit.id}
-      className="border-b border-white/5 last:border-0"
-    >
-      <td className="py-4">
-        {fruit.emoji} {fruit.name}
-      </td>
+        <tbody>
+          {traditionalProducts.map((fruit) => (
+            <tr
+              key={fruit.id}
+              className="border-b border-white/5 last:border-0"
+            >
+              <td className="py-4">
+                {fruit.emoji} {fruit.name}
+              </td>
 
-      {fruit.prices.map(([_, price]) => (
-        <td key={price}>{price}</td>
-      ))}
-    </tr>
-  ))}
-</tbody>
-                </table>
+              {fruit.prices.map(([_, price]) => (
+                <td key={price}>{price}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    {/* Mobile */}
+    <div className="mt-6 space-y-3 md:hidden">
+      {traditionalProducts.map((fruit) => (
+        <div
+          key={fruit.id}
+          className="overflow-hidden rounded-2xl border border-white/10 bg-white/5"
+        >
+          <button
+            onClick={() =>
+              setOpenFruit(
+                openFruit === fruit.id ? null : fruit.id
+              )
+            }
+            className="flex w-full items-center justify-between p-5"
+          >
+            <span className="font-display text-lg text-gold">
+              {fruit.emoji} {fruit.name}
+            </span>
+
+            <ChevronDown
+              className={`transition-transform duration-300 ${
+                openFruit === fruit.id ? "rotate-180" : ""
+              }`}
+            />
+          </button>
+
+          {openFruit === fruit.id && (
+            <div className="border-t border-white/10 px-5 py-4">
+              <div className="space-y-3 text-sm">
+                {fruit.prices.map(([weight, price]) => (
+                  <div
+                    key={weight}
+                    className="flex justify-between"
+                  >
+                    <span className="text-white/70">
+                      {weight}
+                    </span>
+
+                    <span className="font-semibold text-gold">
+                      {price}
+                    </span>
+                  </div>
+                ))}
               </div>
-            )}
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </>
+)}
 
             {/* Linha Cítrica */}
             <button
