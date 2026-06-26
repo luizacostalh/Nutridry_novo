@@ -128,12 +128,15 @@ function Nav() {
   return (
     <header className="fixed inset-x-0 top-0 z-40">
       <div className="container mx-auto max-w-7xl px-6 py-5">
-        <div className="glass-dark flex items-center justify-between rounded-full px-6 py-3">
-          <a href="#top" className="flex items-center gap-2 text-[oklch(0.97_0.01_80)]">
-            <Citrus className="h-5 w-5 text-gold" strokeWidth={1.5} />
-            <span className="font-display text-lg tracking-wide">Nutridry</span>
-          </a>
-           </div>
+        <a
+          href="#top"
+          className="flex items-center gap-2 text-[oklch(0.97_0.01_80)]"
+        >
+          <Citrus className="h-5 w-5 text-gold" strokeWidth={1.5} />
+          <span className="font-display text-lg tracking-wide">
+            Nutridry
+          </span>
+        </a>
       </div>
     </header>
   );
@@ -165,7 +168,22 @@ function Hero() {
             variants={stagger}
             className="max-w-3xl text-[oklch(0.97_0.01_80)]"
           >
-            <motion.div variants={fadeUp} className="mt-6 mb-6 inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 backdrop-blur">
+            <motion.div
+  variants={fadeUp}
+  className="mb-8"
+>
+  <a
+    href="#top"
+    className="inline-flex items-center gap-3"
+  >
+    <Citrus className="h-8 w-8 text-gold" strokeWidth={1.5} />
+    <span className="font-display text-3xl tracking-wide text-white">
+      Nutridry
+    </span>
+  </a>
+</motion.div>
+
+            <motion.div variants={fadeUp} className="mb-6 inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 backdrop-blur">
               <span className="h-1.5 w-1.5 rounded-full bg-gold" />
               <span className="text-xs uppercase tracking-[0.25em] text-[oklch(0.9_0.012_80)]">
                 Artesanal · 100% Natural
@@ -1208,7 +1226,7 @@ function FloatingWhatsApp() {
 function Index() {
   return (
     <main className="bg-background text-foreground">
-      <Nav />
+     {/*<Nav />*/}
       <Hero />
       <Products />
        {/*<Uses />*/}
