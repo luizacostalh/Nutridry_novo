@@ -49,7 +49,7 @@ export const Route = createFileRoute("/")({
 });
 
 const WHATSAPP_URL =
-  "https://wa.me/5567999224158?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20um%20pedido%20de%20frutas%20desidratadas.";
+  "https://wa.me/5567999224158?text=Oi!%20Vim%20pelo%20site,%20queria%20ver%20as%20op%C3%A7%C3%B5es%20de%20frutas.";
 
 import type { Variants } from "framer-motion";
 
@@ -135,18 +135,16 @@ function Nav() {
           </a>
           <nav className="hidden items-center gap-8 text-sm text-[oklch(0.85_0.012_80)] md:flex">
             <a href="#produtos" className="transition hover:text-gold">Produtos</a>
-            <a href="#kits" className="transition hover:text-gold">Kits</a>
+        
             <a href="#processo" className="transition hover:text-gold">Processo</a>
             <a href="#contato" className="transition hover:text-gold">Contato</a>
           </nav>
           <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-gradient-gold px-5 py-2 text-xs font-semibold uppercase tracking-wider text-[oklch(0.16_0.02_150)] shadow-soft transition hover:scale-[1.03]"
-          >
-            Pedir agora
-          </a>
+  href="#produtos"
+  className="inline-flex items-center gap-2 rounded-full bg-gradient-gold px-5 py-2 text-xs font-semibold uppercase tracking-wider text-[oklch(0.16_0.02_150)] shadow-soft transition hover:scale-[1.03]"
+>
+  Ver produtos
+</a>
         </div>
       </div>
     </header>
@@ -221,7 +219,7 @@ function Hero() {
   );
 }
 
-function Uses() {
+  function Uses() {
   return (
     <Section
       id="usos"
@@ -229,7 +227,7 @@ function Uses() {
     >
       <div className="grid items-center gap-16 lg:grid-cols-2">
         {/* Texto */}
-        <motion.div
+         <motion.div
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
@@ -239,7 +237,7 @@ function Uses() {
             variants={fadeUp}
             className="text-xl leading-9 font-light text-muted-foreground lg:text-[1.6rem]"
           >
-            Selecionamos frutas de alta qualidade e aplicamos um processo artesanal de desidratação que preserva sabor, aroma e beleza natural. Um produto pensado para quem valoriza experiências autênticas, seja em drinks, gastronomia ou como snack saudável.
+            Selecionamos frutas de alta qualidade e preservamos sua essência por meio de um processo artesanal de desidratação. O resultado são ingredientes naturais que transformam drinks, receitas e momentos simples em experiências memoráveis.
           </motion.p>
 
           <motion.div
@@ -263,7 +261,7 @@ function Uses() {
               </div>
             ))}
           </motion.div>
-        </motion.div>
+        </motion.div> 
 
         {/* Imagem */}
         <motion.div
@@ -280,11 +278,11 @@ function Uses() {
               className="aspect-[4/5] w-full object-cover transition duration-700 hover:scale-105"
             />
           </div>
-        </motion.div>
+        </motion.div> 
       </div>
     </Section>
   );
-}
+} 
 
 function About() {
   return (
@@ -921,7 +919,7 @@ const KITS = [
     description: "Seleção premium para experiências sofisticadas.",
     accent: "from-[oklch(0.22_0.025_150)] to-[oklch(0.4_0.04_150)]",
   },
-];
+]; 
 
 function Kits() {
   return (
@@ -1121,11 +1119,11 @@ function CTA() {
           Faça seu pedido agora
         </motion.p>
         <motion.h2 variants={fadeUp} className="font-display text-5xl font-medium leading-[1.05] md:text-7xl">
-          Pequenos lotes,<br />
-          <span className="italic text-gradient-gold">grandes momentos.</span>
+           Um jeito mais simples de<br />
+          <span className="italic text-gradient-gold">comer bem</span> todo dia.
         </motion.h2>
         <motion.p variants={fadeUp} className="mx-auto mt-6 max-w-xl text-lg text-[oklch(0.88_0.012_80)]">
-          Produção artesanal · Pequenos lotes · Qualidade premium
+          Um jeito fácil de ter fruta de verdade no dia a dia.
         </motion.p>
         <motion.div variants={fadeUp} className="mt-12 flex flex-wrap justify-center gap-4">
           <a
@@ -1138,7 +1136,7 @@ function CTA() {
             Pedir pelo WhatsApp
           </a>
           <a
-            href="https://instagram.com"
+            href="https://www.instagram.com/nutridry.snacks?igsh=a2kybmd0dDFhYWt3"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 rounded-full border border-white/30 bg-white/5 px-9 py-5 text-sm font-semibold uppercase tracking-wider text-white backdrop-blur transition hover:bg-white/15"
@@ -1170,7 +1168,7 @@ function Footer() {
             <div className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">Navegação</div>
             <ul className="mt-4 space-y-2 text-sm">
               <li><a href="#produtos" className="hover:text-gold">Produtos</a></li>
-              <li><a href="#kits" className="hover:text-gold">Kits</a></li>
+              
               <li><a href="#processo" className="hover:text-gold">Processo</a></li>
               <li><a href="#galeria" className="hover:text-gold">Galeria</a></li>
             </ul>
@@ -1184,7 +1182,7 @@ function Footer() {
                 </a>
               </li>
               <li>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-gold">
+                <a href="https://www.instagram.com/nutridry.snacks?igsh=a2kybmd0dDFhYWt3" target="_blank" rel="noopener noreferrer" className="hover:text-gold">
                   @Nutridry
                 </a>
               </li>
@@ -1225,12 +1223,12 @@ function Index() {
       <Nav />
       <Hero />
       <Products />
-      <Uses />
-      <About />
+       {/*<Uses />*/}
+      {/*<About />*/}
       {/*<Differentials />*/}
       <Gallery />
       
-      {/*<Kits />*/}
+      
       {/*<HowToConsume />*/}
       <Process />
       <Social />
