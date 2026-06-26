@@ -133,19 +133,7 @@ function Nav() {
             <Citrus className="h-5 w-5 text-gold" strokeWidth={1.5} />
             <span className="font-display text-lg tracking-wide">Nutridry</span>
           </a>
-          <nav className="hidden items-center gap-8 text-sm text-[oklch(0.85_0.012_80)] md:flex">
-            <a href="#produtos" className="transition hover:text-gold">Produtos</a>
-        
-            <a href="#processo" className="transition hover:text-gold">Processo</a>
-            <a href="#contato" className="transition hover:text-gold">Contato</a>
-          </nav>
-          <a
-  href="#produtos"
-  className="inline-flex items-center gap-2 rounded-full bg-gradient-gold px-5 py-2 text-xs font-semibold uppercase tracking-wider text-[oklch(0.16_0.02_150)] shadow-soft transition hover:scale-[1.03]"
->
-  Ver produtos
-</a>
-        </div>
+           </div>
       </div>
     </header>
   );
